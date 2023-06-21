@@ -23,8 +23,8 @@
             <label for=" form-label">Gender</label>
             @foreach ($genders as $gender)
                 <div class="form-check @error('gender') is-invalid @enderror">
-                    <input class="form-check-input" type="radio" {{ old('gender' === $gender ? 'checked' : '') }}
-                        id="gender_{{ $gender }}" value="{{ $gender }}" name="gender">
+                    <input class="form-check-input" type="radio" id="gender_{{ $gender }}" name="gender"
+                        value="{{ $gender }}" {{ old('gender') === $gender ? 'checked' : '' }}>
                     <label class="form-check-label" for="gender_{{ $gender }}">
                         {{ $gender }}
                     </label>
@@ -40,7 +40,7 @@
             <select name="township" class=" form-select  @error('township') is-invalid @enderror" id="township">
                 <option value="">Select One</option>
                 @foreach (App\Models\Township::all() as $township)
-                    <option value="{{ $township->name }}" {{ old('township' === $township->name ? 'selected' : '') }}>
+                    <option value="{{ $township->name }}" {{ old('township') === $township->name ? 'selected' : '' }}>
                         {{ $township->name }}
                     </option>
                 @endforeach

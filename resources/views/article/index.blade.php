@@ -29,14 +29,23 @@
                             <tr>
                                 <td>{{ $article->id }}</td>
                                 <td>
-                                    {{ $article->title }}
-                                    <br>
-                                    <span class=" small text-black-50">
-                                        {{ Str::limit($article->description, 30, '...') }}
-                                    </span>
+                                    <div class=" d-flex justify-center ">
+                                        @if ($article->thumbnail)
+                                            <img class="me-3 rounded " src="{{ asset(Storage::url($article->thumbnail)) }}"
+                                                width="40" height="40" alt="">
+                                        @else
+                                            <i class="bi bi-images fs-1 text-primary me-3"></i>
+                                        @endif
+
+                                        {{ Str::limit($article->title, 10, '...') }}
+                                        <br>
+                                        <span class=" small text-black-50">
+                                            {{ Str::limit($article->description, 20, '...') }}
+                                        </span>
+                                    </div>
                                 </td>
                                 <td>
-                                    {{ $article->category->title ?? "Unkown" }}
+                                    {{ $article->category->title ?? 'Unkown' }}
                                 </td>
 
                                 @can('admin-only')

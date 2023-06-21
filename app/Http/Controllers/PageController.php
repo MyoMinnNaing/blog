@@ -19,20 +19,32 @@ class PageController extends Controller
     public function validateCheck(Request $request)
     {
         $request->validate([
-            // "title" => "required",
-            // "gender" => "required|in:male,female,other",
-            // "township" => ["required", Rule::in(['banhab', 'tamwe', 'insein', 'hletan'])],
-            // "skills" => "required|array|max:3",
-            // "skillls.*" => "exists:skills,title"
-
+            "title" => "required",
+            "gender" => "required|in:male,female,other",
+            "township" => ["required", Rule::in(['banhab', 'tamwe', 'insein', 'hletan'])],
+            "skills" => "required|array|max:3",
+            "skillls.*" => "exists:skills,title",
             // "photo" => "required|file|max:1024|mimes:jpeg,png",
             "certificates" => "required|array|max:3",
             "certificates.*" => "file|max:1024|mimes:jpg,png"
 
-
         ]);
-        return $request;
+
+        if ($request->hasFile('certificates')) {
+            $file = $request->file('certificates');
+
+            // Get the file size
+            // $fileSize = $file->getSize();
+
+            // Do something with the file size
+            // For example, you can store it in a database or display it to the user
+            // echo "File size: " . $fileSize . " bytes";
+        }
+
+        return gettype($file);
     }
+
+
     public function index()
     {
         $articles = Article::when(request()->has("keyword"), function ($query) {

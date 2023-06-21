@@ -23,9 +23,15 @@
                         {{ $article->description }}
 
                     </div>
+                    <div class=" py-3">
+                        <img src="{{ asset(Storage::url($article->thumbnail)) }}" height="200" alt="">
+
+                    </div>
+
                     @include('layouts.comment')
 
                 </div>
+
 
 
 

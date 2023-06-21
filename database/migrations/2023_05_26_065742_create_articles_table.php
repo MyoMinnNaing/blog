@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text("slug");
             $table->longText("description");
             $table->text("excerpt");
+            $table->string('thumbnail')->nullable();
             $table->foreignId("category_id");
             $table->foreignId("user_id");
             $table->timestamps();
